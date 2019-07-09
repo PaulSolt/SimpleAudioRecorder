@@ -17,6 +17,7 @@ class AudioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //        playButton.titleLabel.title // TODO: fix button title clipping without stackview
         player.delegate = self
     }
 

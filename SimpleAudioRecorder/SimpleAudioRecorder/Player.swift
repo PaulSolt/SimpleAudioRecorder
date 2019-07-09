@@ -24,6 +24,7 @@ class Player: NSObject {
         // get the url
         let songURL = Bundle.main.url(forResource: "piano", withExtension: "mp3")!
         audioPlayer = try! AVAudioPlayer(contentsOf: songURL)
+        audioPlayer.delegate = self
     }
     
     // isPlaying
@@ -58,4 +59,10 @@ class Player: NSObject {
     }
     
     
+}
+
+extension Player: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        notifyDelegate()
+    }
 }
