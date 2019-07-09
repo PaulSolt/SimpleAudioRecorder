@@ -8,10 +8,12 @@
 
 import AVFoundation
 
-
-
+protocol PlayerDelegate: AnyObject {
+    func playerDidChangeState(player: Player)
+}
 
 class Player: NSObject {
+    weak var delegate: PlayerDelegate?
     
     private var audioPlayer: AVAudioPlayer!
     
@@ -35,10 +37,12 @@ class Player: NSObject {
     
     func play() {
         audioPlayer.play()
+        notifyDelegate()
     }
     
     func pause() {
         audioPlayer.pause()
+        notifyDelegate()
     }
     
     func playPause() {
@@ -48,5 +52,10 @@ class Player: NSObject {
             play()
         }
     }
+    
+    private func notifyDelegate() {
+        delegate?.playerDidChangeState(player: self)
+    }
+    
     
 }

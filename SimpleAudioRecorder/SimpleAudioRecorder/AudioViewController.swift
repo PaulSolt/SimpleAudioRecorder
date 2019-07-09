@@ -17,12 +17,21 @@ class AudioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        player.delegate = self
     }
 
+    private func updateViews() {
+//        playButton.isSelected = true
+        playButton.setTitle(player.isPlaying ? "Pause" : "Play", for: .normal)
+    }
 
     @IBAction func playButtonPressed(_ sender: Any) {
         player.playPause()
     }
 }
 
+extension AudioViewController: PlayerDelegate {
+    func playerDidChangeState(player: Player) {
+        updateViews()
+    }
+}
