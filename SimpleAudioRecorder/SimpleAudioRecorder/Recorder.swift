@@ -33,7 +33,11 @@ class Recorder: NSObject {
 
         // filename.caf
 
-        let name = ISO8601DateFormatter.string(from: Date(), timeZone: .current, formatOptions: [.withInternetDateTime])
+        //let name = ISO8601DateFormatter.string(from: Date(), timeZone: .current, formatOptions: [.withInternetDateTime])
+        
+        
+        
+        let name = UUID().uuidString // "Audio"
         fileURL = documentDirectory.appendingPathComponent(name).appendingPathExtension("caf")
         
         // 48khz = cd quality
